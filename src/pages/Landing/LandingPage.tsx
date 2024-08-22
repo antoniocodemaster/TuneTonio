@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import heroBg from '../../assets/images/hero-bg.jpg';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,9 @@ const LandingPage = () => {
         <Typography variant="h1" className="text-center text-white">
           Explore, Discover, and Enjoy!
         </Typography>
-        <Link to="/music-explorer" className='btn-primary'>Take me to Music Explorer</Link>
+        <Link to="/music-explorer" className="btn-primary">
+          Take me to Tune Tonio Music Explorer
+        </Link>
       </Box>
     </Box>
   );
