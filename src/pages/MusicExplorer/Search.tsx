@@ -30,7 +30,7 @@ const Search = () => {
           setSearchResults(artists);
           return;
         }
-        setError('Nothing found! Please try again with a different keyword.');
+        setError('Nothing found! Please try again with a different keyword, try with "coldplay" for example');
       } catch (error) {
         console.error('Error fetching artists:', error);
       }

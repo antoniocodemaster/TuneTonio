@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import Album from '../../core/entities/Album';
 import useMusicExplorerStore from '../store/MusicExplorerStore';
-import ViewMoreModal from '../../pages/MusicExplorer/Albums/components/ViewMoreModal';
+import ViewMoreModal from './ViewMoreModal';
 
 interface AlbumsListProps {
   albums: Album[];
@@ -22,7 +22,7 @@ const AlbumsList = ({ albums }: AlbumsListProps) => {
         {albums.map((album) => (
           <Box
             key={album.idAlbum}
-            className=" md:w-[48%] lg:w-[23%]  w-[100%] mb-8 album"
+            className=" md:w-[48%] lg:w-[31%] 2xl:w-[23.5%] w-[100%] mb-8 album"
           >
             <img src={album.strAlbumThumb} alt="" />
             <Box className="disk-data pt-4">
