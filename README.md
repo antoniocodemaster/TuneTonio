@@ -1,5 +1,5 @@
-# Unified Wellness
-Unified Wellness is a react website that offers professional fighters and any athlete a customize healthcare insurance plan selection based on their needs and that can fit their budget. By completing a form the system will filter automatically the best carriers in the nation so you can choose the subscription you and your family need.
+# TuneTonio
+TuneTonio is a React-based web application designed with a focus on clean architecture principles. The primary goal of this project is to provide users with a seamless experience in exploring, discovering, and enjoying quality music. A standout feature of TuneTonio is the ability to save favorite albums, offering users quick and easy access to their preferred music anytime.
 
 ## How to run the project locally 
 * Clone the repository and cd into the project folder
@@ -22,7 +22,7 @@ Unified Wellness is a react website that offers professional fighters and any at
 * ESLint: A tool for identifying and fixing problems in JavaScript code.
 * Prettier: An opinionated code formatter.
 * [Tailwind CSS: A utility-first CSS framework for rapid UI development.](https://tailwindcss.com/)
-* Project structure based on Screaming architecture style
+* Project structure based on Screaming/clean architecture principles
 * [Zustand, state management tool](https://zustand-demo.pmnd.rs/)
 
 ## Git methodology 
