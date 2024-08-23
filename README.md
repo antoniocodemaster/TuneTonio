@@ -7,6 +7,9 @@ TuneTonio is a React-based web application designed with a focus on clean archit
 * Running the Project: npm run dev
 * Build for Production: npm run build
 
+##
+* Additionally you can check the deployed version of the site in this url: [TuneTonio](https://marvelous-strudel-b45a69.netlify.app/)
+
 ## Technologies Used
 
 * [React: A JavaScript library for building user interfaces.](https://react.dev/)
