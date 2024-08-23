@@ -20,6 +20,7 @@ const Search = () => {
 
   const onSubmit = async (data: FormSearchData) => {
     setError(null);
+    setSearchResults([]);
     setLoading(true);
     setTimeout(async () => {
       try {
@@ -29,7 +30,7 @@ const Search = () => {
           setSearchResults(artists);
           return;
         }
-        setError('No artists found with that name or keyword! Try again.');
+        setError('Nothing found! Please try again with a different keyword.');
       } catch (error) {
         console.error('Error fetching artists:', error);
       }
@@ -40,6 +41,7 @@ const Search = () => {
     <>
       <Typography variant="h2">What do you want to listen to?</Typography>
       <Box
+        className="search-form"
         component="form"
         noValidate
         autoComplete="off"
@@ -50,12 +52,12 @@ const Search = () => {
           name="artist"
           control={control}
           defaultValue=""
-          rules={{ required: 'You must enter an artist name or some keyword' }}
+          rules={{ required: 'Please enter an artist name or some keyword' }}
           render={({ field }) => (
             <TextField
               {...field}
               label="Search Artist"
-              variant="outlined"
+              variant="standard"
               fullWidth
               error={!!errors.artist}
               helperText={errors.artist ? errors.artist.message : ''}
@@ -68,12 +70,12 @@ const Search = () => {
           type="submit"
           sx={{ alignSelf: 'flex-end' }}
         >
-          Submit
+          Search Now
         </Button>
       </Box>
 
       {loading && (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'left' }}>
           <CircularProgress />
         </Box>
       )}
@@ -81,23 +83,36 @@ const Search = () => {
       {searchResults?.length > 0 && (
         <>
           <Typography variant="h3">Search Results!</Typography>
-          <Box>
+          <Box className="flex flex-wrap gap-4 albums-list mt-6">
             {searchResults.map((artist) => (
-              <Box key={artist.idArtist}>
-                <Typography variant="h4">
-                  <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>
-                    {artist.strArtist}
-                  </Link>
-                </Typography>
-                <Typography variant="h4">{artist.strCountry}</Typography>
-                {/* <img src={artist.strArtistThumb} alt={artist.strArtist} /> */}
+              <Box
+                className=" md:w-[48%] lg:w-[23%]  w-[100%] mb-8 album"
+                key={artist.idArtist}
+              >
+                <img src={artist.strArtistThumb} alt={artist.strArtist} />
+
+                <Box className="disk-data pt-4">
+                  <Typography variant="h3" className="text-left pl-2">
+                    <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>
+                      {artist.strArtist}
+                    </Link>
+                  </Typography>
+                  <Box className="buttons-container">
+                    <Link
+                      to={`/music-explorer/albums/all/${artist.strArtist}`}
+                      className="btn-green"
+                    >
+                      Checkout Discography
+                    </Link>
+                  </Box>
+                </Box>
               </Box>
             ))}
           </Box>
         </>
       )}
 
-      {error && <Typography variant="h4">{error}</Typography>}
+      {error && <Typography variant="h3">{error}</Typography>}
     </>
   );
 };

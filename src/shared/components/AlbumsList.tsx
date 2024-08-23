@@ -15,44 +15,53 @@ const AlbumsList = ({ albums }: AlbumsListProps) => {
     removeAlbumFromFavorites,
     albumInFavorites,
   } = useMusicExplorerStore();
+  
   return (
     <>
-      <Box className="flex flex-wrap gap-4 albums-list">
+      <Box className="flex flex-wrap gap-4 albums-list mt-6">
         {albums.map((album) => (
-          <Box key={album.idAlbum} className=" md:w-[48%] lg:w-[23%]  w-[100%] mb-8 album">
+          <Box
+            key={album.idAlbum}
+            className=" md:w-[48%] lg:w-[23%]  w-[100%] mb-8 album"
+          >
             <img src={album.strAlbumThumb} alt="" />
-            <Box className="disk-data">
-              <Typography className="text-left pl-2">
+            <Box className="disk-data pt-4">
+              <Typography variant="h3" className="text-left pl-2">
                 {album.strAlbum}
               </Typography>
 
-              {albumInFavorites(album) && (
-                <Button
-                  onClick={() => {
-                    removeAlbumFromFavorites(album);
-                  }}
-                >
-                  Remove From Favorites
-                </Button>
-              )}
-              {!albumInFavorites(album) && (
-                <Button
-                  onClick={() => {
-                    addAlbumToFavorites(album);
-                  }}
-                >
-                  Add To Favorites
-                </Button>
-              )}
+              <Box className="buttons-container">
+                {albumInFavorites(album) && (
+                  <Button
+                    className="btn-red"
+                    onClick={() => {
+                      removeAlbumFromFavorites(album);
+                    }}
+                  >
+                    Remove From Favorites
+                  </Button>
+                )}
+                {!albumInFavorites(album) && (
+                  <Button
+                    className="btn-green"
+                    onClick={() => {
+                      addAlbumToFavorites(album);
+                    }}
+                  >
+                    Add To Favorites
+                  </Button>
+                )}
 
-              <Button
-                onClick={() => {
-                  selectAlbum(album);
-                  openModal(true);
-                }}
-              >
-                View More
-              </Button>
+                <Button
+                  className="btn-primary-small"
+                  onClick={() => {
+                    selectAlbum(album);
+                    openModal(true);
+                  }}
+                >
+                  View More
+                </Button>
+              </Box>
               {/* <Typography>{album.strDescriptionEN}</Typography> */}
             </Box>
           </Box>

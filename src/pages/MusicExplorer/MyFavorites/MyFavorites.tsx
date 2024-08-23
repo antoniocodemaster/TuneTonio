@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useMusicExplorerStore from '../../../shared/store/MusicExplorerStore';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import AlbumsList from '../../../shared/components/AlbumsList';
 
 const MyFavorites = () => {
@@ -12,17 +12,21 @@ const MyFavorites = () => {
   }, []);
 
   return (
-    <>
-      <Typography>My Favorites</Typography>
-      <Button
-        onClick={() => {
-          clearFavorites();
-        }}
-      >
-        Clear Favorites
-      </Button>
+    <Box className="favorites">
+      <Box className="flex sm:flex-row flex-col">
+        <Typography variant="h2">My Favorites</Typography>
+        <Button
+          className="btn-red clear"
+          onClick={() => {
+            clearFavorites();
+          }}
+        >
+          Clear Favorites
+        </Button>
+      </Box>
+
       <AlbumsList albums={favorites} />
-    </>
+    </Box>
   );
 };
 

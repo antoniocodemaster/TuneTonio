@@ -23,6 +23,7 @@ interface Artist {
   strBiographyJP: string;
   strBiographyRU: string;
   strCountry: string;
+  strArtistThumb: string;
 }
 
 export default Artist;

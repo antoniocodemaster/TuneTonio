@@ -28,7 +28,7 @@ export const searchArtists = async (
     console.log('response.data.artists', response.data.artists);
     return response.data.artists;
   } catch (error) {
-    console.error('Error fetching most loved albums:', error);
+    console.error('Error fetching Artists data:', error);
     throw error;
   }
 };
@@ -41,7 +41,7 @@ export const getAlbumsByArtist = async (artist: string): Promise<Album[]> => {
     console.log('response.data.album', response.data.album);
     return response.data.album;
   } catch (error) {
-    console.error('Error fetching most loved albums:', error);
+    console.error('Error fetching albums data:', error);
     throw error;
   }
 };
