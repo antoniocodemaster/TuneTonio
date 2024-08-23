@@ -218,3 +218,8 @@ p {
     margin-right: auto !important;
   }
 }
+
+#error-page .btn-primary {
+  color: #fff;
+  padding: 20px 10px;
+}
