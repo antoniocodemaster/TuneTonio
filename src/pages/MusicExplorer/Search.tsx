@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FormSearchData from '../../core/entities/FormSearchData';
 import { searchArtists } from '../../core/services/api/theaudiodbApi';
+import CircularProgress from '@mui/material/CircularProgress';
 import Artist from '../../core/entities/Artist';
 
 const Search = () => {
   const [searchResults, setSearchResults] = useState<Artist[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -16,12 +19,21 @@ const Search = () => {
   } = useForm<FormSearchData>();
 
   const onSubmit = async (data: FormSearchData) => {
-    try {
-      const artists = await searchArtists(data);
-      setSearchResults(artists);
-    } catch (error) {
-      console.error('Error fetching artists:', error);
-    }
+    setError(null);
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        const artists = await searchArtists(data);
+        setLoading(false);
+        if (artists) {
+          setSearchResults(artists);
+          return;
+        }
+        setError('No artists found with that name or keyword! Try again.');
+      } catch (error) {
+        console.error('Error fetching artists:', error);
+      }
+    }, 2000); // Simulate a delay to show the loading spinner
   };
 
   return (
@@ -60,20 +72,32 @@ const Search = () => {
         </Button>
       </Box>
 
-      <h3>Search Results!</h3>
-      <Box>
-        {searchResults.map((artist) => (
-          <Box key={artist.idArtist}>
-            <Typography variant="h4">
-              <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>
-                {artist.strArtist}
-              </Link>
-            </Typography>
-            <Typography variant="h4">{artist.strCountry}</Typography>
-            {/* <img src={artist.strArtistThumb} alt={artist.strArtist} /> */}
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+          <CircularProgress />
+        </Box>
+      )}
+
+      {searchResults?.length > 0 && (
+        <>
+          <Typography variant="h3">Search Results!</Typography>
+          <Box>
+            {searchResults.map((artist) => (
+              <Box key={artist.idArtist}>
+                <Typography variant="h4">
+                  <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>
+                    {artist.strArtist}
+                  </Link>
+                </Typography>
+                <Typography variant="h4">{artist.strCountry}</Typography>
+                {/* <img src={artist.strArtistThumb} alt={artist.strArtist} /> */}
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Box>
+        </>
+      )}
+
+      {error && <Typography variant="h4">{error}</Typography>}
     </>
   );
 };

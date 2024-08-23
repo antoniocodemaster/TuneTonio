@@ -11,6 +11,8 @@ interface MusicExplorerStore {
   removeAlbumFromFavorites: (album: Album) => void;
   saveFavoritesIntoLocalStorage: () => void;
   getFavoritesFromLocalStorage: () => void;
+  clearFavorites: () => void;
+  albumInFavorites: (album: Album) => boolean;
 }
 
 const useMusicExplorerStore = create<MusicExplorerStore>((set, get) => ({
@@ -24,10 +26,13 @@ const useMusicExplorerStore = create<MusicExplorerStore>((set, get) => ({
     get().saveFavoritesIntoLocalStorage();
   },
   removeAlbumFromFavorites: (album) => {
-    set((state) => ({
-      favorites: state.favorites.filter(
-        (favAlbum) => favAlbum.idAlbum !== album.idAlbum
-      ),
+    console.log('album', album);
+    const newFavorites = get().favorites.filter(
+      (favAlbum) => favAlbum.idAlbum !== album.idAlbum
+    );
+    console.log('newFavorites', newFavorites);
+    set(() => ({
+      favorites: newFavorites,
     }));
     get().saveFavoritesIntoLocalStorage();
   },
@@ -39,6 +44,17 @@ const useMusicExplorerStore = create<MusicExplorerStore>((set, get) => ({
     if (favorites) {
       set(() => ({ favorites: JSON.parse(favorites) }));
     }
+  },
+  clearFavorites: () => {
+    set(() => ({
+      favorites: [],
+    }));
+    get().saveFavoritesIntoLocalStorage();
+  },
+  albumInFavorites: (album) => {
+    return get().favorites.some(
+      (favAlbum) => favAlbum.idAlbum === album.idAlbum
+    );
   },
 }));
 

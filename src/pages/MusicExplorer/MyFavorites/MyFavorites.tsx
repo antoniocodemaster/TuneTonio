@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import useMusicExplorerStore from '../../../shared/store/MusicExplorerStore';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import AlbumsList from '../../../shared/components/AlbumsList';
 
 const MyFavorites = () => {
-  const { favorites, getFavoritesFromLocalStorage } = useMusicExplorerStore();
+  const { favorites, getFavoritesFromLocalStorage, clearFavorites } =
+    useMusicExplorerStore();
 
   useEffect(() => {
     getFavoritesFromLocalStorage();
@@ -13,7 +14,14 @@ const MyFavorites = () => {
   return (
     <>
       <Typography>My Favorites</Typography>
-      <AlbumsList albums={favorites}/>
+      <Button
+        onClick={() => {
+          clearFavorites();
+        }}
+      >
+        Clear Favorites
+      </Button>
+      <AlbumsList albums={favorites} />
     </>
   );
 };
