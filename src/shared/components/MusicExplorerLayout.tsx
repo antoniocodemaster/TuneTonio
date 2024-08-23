@@ -179,21 +179,12 @@ const MusicExplorerLayout = ({ children }: LayoutProps) => {
               <ListItemText primary="Explore Music" />
             </ListItem>
           </Link>
-          <Link to="/music-explorer/favorites">
+          <Link to="/music-explorer/my-favorites">
             <ListItem>
               <ListItemIcon>
                 <SpeakerIcon sx={{ color: iconsColor }} />
               </ListItemIcon>
               <ListItemText primary="My Favorites" />
-            </ListItem>
-          </Link>
-
-          <Link to="/music-explorer/most-loved">
-            <ListItem>
-              <ListItemIcon>
-                <AssessmentIcon sx={{ color: iconsColor }} />
-              </ListItemIcon>
-              <ListItemText primary="Most Loved" />
             </ListItem>
           </Link>
 

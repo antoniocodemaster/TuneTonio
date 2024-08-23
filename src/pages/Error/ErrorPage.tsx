@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -9,7 +9,9 @@ export default function ErrorPage() {
     <Box id="error-page" className="py-5 px-5">
       <Typography variant="h1">Oops!</Typography>
       <Typography>Sorry, an unexpected error has occurred.</Typography>
-      <Typography>{/* <i>{error.statusText || error.message}</i> */}</Typography>
+      <Link className="btn-primary mt-5" to="/">
+        Take me back to TuneTonio Home Page
+      </Link>
     </Box>
   );
 }
