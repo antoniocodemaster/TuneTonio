@@ -92,6 +92,27 @@ p {
   min-width: 55px;
 }
 
-.nav-list li  span {
+.nav-list li span {
   color: #495057;
+}
+
+.albums-list .album {
+  box-shadow: 0px 0px 10px rgba(140, 104, 205, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.view-more-modal .MuiBox-root {
+  width: 750px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+.view-more-modal .MuiBox-root img {
+  width: 250px;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }

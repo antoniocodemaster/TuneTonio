@@ -24,5 +24,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'max-len': ['error', { code: 110 }], 
   },
 };

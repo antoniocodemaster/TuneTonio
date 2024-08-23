@@ -1,33 +1,32 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import FormSearchData from '../../core/entities/FormSearchData';
+import { searchArtists } from '../../core/services/api/theaudiodbApi';
+import Artist from '../../core/entities/Artist';
 
 const Search = () => {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Artist[]>([]);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormSearchData>();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: FormSearchData) => {
     try {
-      const response = await axios.get(
-        `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${data.artist}`
-      );
-      console.log('response:', response.data.artists);
-      setSearchResults(response.data.artists);
+      const artists = await searchArtists(data);
+      setSearchResults(artists);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error fetching artists:', error);
     }
   };
 
   return (
     <>
-      <Typography variant="h2">What do you want to listed to?</Typography>
+      <Typography variant="h2">What do you want to listen to?</Typography>
       <Box
         component="form"
         noValidate
@@ -66,7 +65,9 @@ const Search = () => {
         {searchResults.map((artist) => (
           <Box key={artist.idArtist}>
             <Typography variant="h4">
-              <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>{artist.strArtist}</Link>
+              <Link to={`/music-explorer/albums/all/${artist.strArtist}`}>
+                {artist.strArtist}
+              </Link>
             </Typography>
             <Typography variant="h4">{artist.strCountry}</Typography>
             {/* <img src={artist.strArtistThumb} alt={artist.strArtist} /> */}

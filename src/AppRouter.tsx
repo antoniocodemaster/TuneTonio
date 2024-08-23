@@ -3,8 +3,7 @@ import LandingPage from './pages/Landing/LandingPage';
 import MusicExplorer from './pages/MusicExplorer/MusicExplorer';
 import ErrorPage from './pages/Error/ErrorPage';
 import Search from './pages/MusicExplorer/Search';
-import AllAlbums from './pages/MusicExplorer/Albums/AllAlbums';
-import SingleAlbum from './pages/MusicExplorer/Albums/SingleAlbum';
+import Albums from './pages/MusicExplorer/Albums/Albums';
 import MyFavorites from './pages/MusicExplorer/MyFavorites/MyFavorites';
 
 const AppRouter = createBrowserRouter([
@@ -18,8 +17,7 @@ const AppRouter = createBrowserRouter([
     element: <MusicExplorer />,
     children: [
       { element: <Search />, index: true },
-      { element: <AllAlbums />, path: 'albums/all/:artist' },
-      { element: <SingleAlbum />, path: 'albums/single/:albumId' },
+      { element: <Albums/>, path: 'albums/all/:artist' },
       { element: <MyFavorites />, path: 'my-favorites' },
     ],
   },
