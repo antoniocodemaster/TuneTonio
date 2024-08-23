@@ -11,7 +11,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link } from 'react-router-dom';
 import {
-  Button,
   List,
   ListItem,
   ListItemIcon,
@@ -21,7 +20,6 @@ import {
 import SpeakerIcon from '@mui/icons-material/Speaker';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import AssessmentIcon from '@mui/icons-material/Assessment';
 
 const drawerWidth = 220;
 

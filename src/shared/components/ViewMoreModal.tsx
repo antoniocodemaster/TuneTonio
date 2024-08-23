@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import useMusicExplorerStore from '../../../../shared/store/MusicExplorerStore';
+import useMusicExplorerStore from '../store/MusicExplorerStore';
 
 const style = {
   position: 'absolute',

@@ -14,7 +14,6 @@ interface AlbumResponse {
 
 const apiClient = axios.create({
   baseURL: 'https://www.theaudiodb.com/',
-  timeout: 2000,
   headers: { 'Content-Type': 'application/json' },
 });
 
